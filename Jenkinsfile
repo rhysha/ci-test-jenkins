@@ -13,7 +13,7 @@ node {
 
         //app = docker.build("rhysha/hello-jenkins")
         //sh 'newgrp docker'
-        sh 'docker build -t hello-jenkins:${IMAGE_VERSION} .'
+        sh 'docker build -t hello-jenkins:${env.IMAGE_VERSION} .'
         //docker.build("rhysha/hello-jenkins:0.0.1")
     }
     stage('Tag image') {
@@ -22,7 +22,7 @@ node {
 
         //app = docker.build("rhysha/hello-jenkins")
         //sh 'newgrp docker'
-        sh 'docker tag hello-jenkins:0.0.1 rhysha/hello-jenkins:${IMAGE_VERSION}'
+        sh 'docker tag hello-jenkins:0.0.1 rhysha/hello-jenkins:${env.IMAGE_VERSION}'
         //docker.build("rhysha/hello-jenkins:0.0.1")
     }
 
@@ -31,7 +31,7 @@ node {
          * First, the incremental build number from Jenkins
          * Second, the 'latest' tag.
          * Pushing multiple tags is cheap, as all the layers are reused. */
-        sh 'docker push rhysha/hello-jenkins:${IMAGE_VERSION}'
+        sh 'docker push rhysha/hello-jenkins:${env.IMAGE_VERSION}'
 
     }
 }
