@@ -11,7 +11,8 @@ node {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-        app = docker.build("rhysha/hello-jenkins")
+        //app = docker.build("rhysha/hello-jenkins")
+        sh "docker build -t hello-jenkins ."
     }
 
     stage('Test image') {
