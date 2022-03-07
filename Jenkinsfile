@@ -12,7 +12,7 @@ node {
          * docker build on the command line */
 
         //app = docker.build("rhysha/hello-jenkins")
-        sh 'newgrp docker'
+        //sh 'newgrp docker'
         sh 'docker build -t hello-jenkins:0.0.1 .'
         //docker.build("rhysha/hello-jenkins:0.0.1")
     }
