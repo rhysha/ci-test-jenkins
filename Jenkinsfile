@@ -1,8 +1,5 @@
 node {
     def app
-    environment {
-        IMAGE_VERSION = '0.0.3'
-    }
     stage('Clone repository') {
         /* Let's make sure we have the repository cloned to our workspace */
 
@@ -24,7 +21,7 @@ node {
 
         //app = docker.build("rhysha/hello-jenkins")
         //sh 'newgrp docker'
-        sh "docker tag hello-jenkins rhysha/hello-jenkins:${IMAGE_VERSION}"
+        sh "docker tag hello-jenkins rhysha/hello-jenkins:${env.BUILD_NUMBER}"
         //docker.build("rhysha/hello-jenkins:0.0.1")
     }
 
@@ -33,7 +30,7 @@ node {
          * First, the incremental build number from Jenkins
          * Second, the 'latest' tag.
          * Pushing multiple tags is cheap, as all the layers are reused. */
-        sh "docker push rhysha/hello-jenkins:${IMAGE_VERSION}"
+        sh "docker push rhysha/hello-jenkins:${env.BUILD_NUMBER}"
 
     }
 }
