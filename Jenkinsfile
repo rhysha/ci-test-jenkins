@@ -13,17 +13,8 @@ node {
 
         //app = docker.build("rhysha/hello-jenkins")
         //sh 'newgrp docker'
-        //sh 'docker build -t hello-jenkins:0.0.1 .'
-        docker.build("rhysha/hello-jenkins:0.0.1")
-    }
-
-    stage('Test image') {
-        /* Ideally, we would run a test framework against our image.
-         * For this example, we're using a Volkswagen-type approach ;-) */
-
-        app.inside {
-            sh 'echo "Tests passed"'
-        }
+        sh 'docker build -t hello-jenkins:0.0.1 .'
+        //docker.build("rhysha/hello-jenkins:0.0.1")
     }
 
     stage('Push image') {
