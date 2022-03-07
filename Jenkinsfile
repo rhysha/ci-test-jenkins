@@ -12,7 +12,8 @@ node {
          * docker build on the command line */
 
         //app = docker.build("rhysha/hello-jenkins")
-        app = docker.build("rhysha/hello-jenkins:0.0.1")
+        sh 'docker build -t hello-jenkins:0.0.1 .'
+        //docker.build("rhysha/hello-jenkins:0.0.1")
     }
 
     stage('Test image') {
