@@ -13,8 +13,8 @@ node {
 
         //app = docker.build("rhysha/hello-jenkins")
         //sh 'newgrp docker'
-        sh 'docker build -t hello-jenkins:0.0.1 .'
-        //docker.build("rhysha/hello-jenkins:0.0.1")
+        //sh 'docker build -t hello-jenkins:0.0.1 .'
+        docker.build("rhysha/hello-jenkins:0.0.1")
     }
 
     stage('Test image') {
