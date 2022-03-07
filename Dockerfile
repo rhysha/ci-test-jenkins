@@ -1,6 +1,6 @@
 # use a node base image
 FROM node:7-onbuild
-
+RUN echo "jenkins ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 # set maintainer
 LABEL maintainer "academy@release.works"
 
