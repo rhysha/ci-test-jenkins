@@ -22,7 +22,7 @@ node {
 
         //app = docker.build("rhysha/hello-jenkins")
         //sh 'newgrp docker'
-        sh 'docker build -t hello-jenkins .'
+        sh 'docker run hello-jenkins'
         //docker.build("rhysha/hello-jenkins:0.0.1")
     }
 
@@ -50,6 +50,16 @@ node {
          * First, the incremental build number from Jenkins
          * Second, the 'latest' tag.
          * Pushing multiple tags is cheap, as all the layers are reused. */
-        
+        switch(GIT_BRANCH) {
+        case "dev":
+            echo "hello dev"
+            break
+        case "staging":
+            echo "hello staging"
+            break
+        case "master":
+            echo "hello master"
+            break
+        }
     }
 }
