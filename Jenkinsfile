@@ -15,6 +15,17 @@ node {
         sh 'docker build -t hello-jenkins .'
         //docker.build("rhysha/hello-jenkins:0.0.1")
     }
+
+    stage('Test Image') {
+        /* This builds the actual image; synonymous to
+         * docker build on the command line */
+
+        //app = docker.build("rhysha/hello-jenkins")
+        //sh 'newgrp docker'
+        sh 'docker build -t hello-jenkins .'
+        //docker.build("rhysha/hello-jenkins:0.0.1")
+    }
+
     stage('Tag image') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
@@ -26,6 +37,14 @@ node {
     }
 
     stage('Push image') {
+        /* Finally, we'll push the image with two tags:
+         * First, the incremental build number from Jenkins
+         * Second, the 'latest' tag.
+         * Pushing multiple tags is cheap, as all the layers are reused. */
+        sh "docker push rhysha/hello-jenkins:${env.BUILD_NUMBER}"
+
+    }
+        stage('Push image') {
         /* Finally, we'll push the image with two tags:
          * First, the incremental build number from Jenkins
          * Second, the 'latest' tag.
