@@ -10,7 +10,8 @@ node {
     }
 
     stage('Test Image') {
-        sh "docker run ${JOB_NAME}"
+        sh "docker run ${JOB_NAME} --name ${JOB_NAME}"
+        sh "docker kill ${JOB_NAME}"
     }
 
     stage('Tag image') {
