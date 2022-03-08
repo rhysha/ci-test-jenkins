@@ -9,10 +9,10 @@ node {
         sh "docker build -t ${JOB_NAME} ."
     }
 
-    stage('Test Image') {
-        sh "docker run ${JOB_NAME} --name ${JOB_NAME}"
-        sh "docker kill ${JOB_NAME}"
-    }
+    // stage('Test Image') {
+    //     sh "docker run ${JOB_NAME} --name ${JOB_NAME}"
+    //     sh "docker kill ${JOB_NAME}"
+    // }
 
     stage('Tag image') {
         sh "docker tag ${JOB_NAME} ${DOCKER_HUB_USER}/${JOB_NAME}-${BRANCH_NAME}:${env.BUILD_NUMBER}"
